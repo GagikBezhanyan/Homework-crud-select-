@@ -1,0 +1,73 @@
+<app-header></app-header>
+<!-- <div>
+    <button (click)="toggle()">Toggle</button>
+    <p *ngIf="isShow">Hi guys!!!</p>
+</div> -->
+
+<!-- <ul>
+    <li *ngFor="let item of data; let i = index; let f = first; let l = last; let o = odd; let e = even">{{item}} {{i}} {{f}} {{l}} {{o}} {{e}}</li>
+</ul> -->
+
+<table>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Age</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of userList; let i = index">
+            <td>{{item?.first_name | uppercase}}</td>
+            <td>{{item?.last_name}}</td>    
+            <td>{{item?.email}}</td>    
+            <td>{{item?.phone}}</td>    
+            <td>{{item?.age}}</td> 
+            <td>
+               <span (click)="deleteUser(i)">Delete</span> 
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- <div [ngSwitch]="divId">
+    <p *ngSwitchCase = "'78'">Test 1</p>
+    <p *ngSwitchCase = "'hello'">Test 2</p>
+    <p *ngSwitchCase = "'test'">Test 3</p>
+    <p *ngSwitchCase = "'block'">Test 4</p>
+    <p *ngSwitchCase = "'9663'">Test 5</p>
+    <p *ngSwitchDefault>Test 6</p>
+</div> -->
+
+<!-- <p [ngClass]="classList">This is a text</p> -->
+<!-- <p [ngClass]="{'text-red':true}">This is a text</p> -->
+<!-- <p [ngClass]="{'text-red':classList.length>0?true:false}">This is a text</p> -->
+
+
+<!-- <p [ngStyle]="style">This is new text</p>
+<p [ngStyle]="{color: 1 === 1 ? 'green' : 'yellow'}" style="color:blue">This is new text 2</p> -->
+
+<!-- pipe - i masin -->
+<div>
+    {{textLC | uppercase}}
+</div>
+<div>
+    {{textUC | titlecase }}
+</div>
+<div>
+    {{textUC | slice:1:4}}
+</div>
+<div>
+    {{textUC | slice:4 | lowercase}
+</div>
+<div>
+    {{date | date:'long'}}
+</div>
+<div>
+    {{num | number:'4.0-2'}}
+</div>
+
+<!-- <div [innerHTML]="html"></div> -->

@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+    <label for="f-name">First Name</label>
+    <div>
+        <input formControlName="first_name" type="text" id="f-name" >
+        <div class="error-message" *ngIf="form.get('first_name').hasError('required') && (form.get('first_name').touched || form.get('first_name').dirty)">this is name required</div>
+        <div class="error-message" *ngIf="form.get('first_name').hasError('minlength') && (form.get('first_name').touched || form.get('first_name').dirty)">Error min</div>
+        <div class="error-message" *ngIf="form.get('first_name').hasError('maxlength') && (form.get('first_name').touched || form.get('first_name').dirty)">Error max</div>
+        <div>{{form.get('first_name').value + form.get('last_name').value}}</div>
+        <input type="checkbox" (change)="inputChange()">
+    </div>
+    <label for="l-name">Last Name</label>
+    <div>
+        <input [formControlName]="'last_name'" type="text" id="l-name">
+        <div class="error-message" *ngIf="form.get('last_name').hasError('pattern') && (form.get('last_name').touched || form.get('last_name').dirty)">You must write a-z small letters only</div>
+    </div>
+    <label for="age">Age</label>
+    <div><input [formControlName]="'age'" type="number" id="age"></div>
+    <label for="email">Email</label>
+    <div><input [formControlName]="'email'" type="email" id="email"></div>
+    <button [disabled]="form.invalid">Save</button>
+</form>
+
+<button (click)="setVal()">Set Value</button>
+<button (click)="reset()">Reset</button>
+
+<app-footer></app-footer>

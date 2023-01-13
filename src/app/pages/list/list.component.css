@@ -1,0 +1,23 @@
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 5px 10px;
+}
+#block{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.error-message {
+    color: red
+}
+input{
+    outline: none;
+}
+input.ng-invalid.ng-touched.ng-dirty {
+    border: 2px solid red;
+}
+input.ng-valid.ng-touched.ng-dirty {
+    border: 2px solid green;
+}

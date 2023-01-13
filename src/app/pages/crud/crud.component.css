@@ -1,0 +1,19 @@
+.block {
+    width: 1285px;
+    margin: auto;
+    padding: 200px 20px;
+    background-color: rgb(134, 147, 219);
+}
+table {
+    border-collapse: collapse;
+}  
+table, th, td {
+    border: 1px solid rgb(28, 97, 14);
+    color: white;
+    font-size: 20px;
+    padding: 10px 20px;
+}
+.add {
+    text-align: right;
+    padding: 15px 0;
+}

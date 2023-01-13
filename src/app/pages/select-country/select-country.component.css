@@ -1,0 +1,16 @@
+#block {
+    width: 600px;
+    margin: auto;
+    padding: 100px 0;
+    background-color: #06200f;
+}
+form {
+    display: flex;
+    justify-content: space-between;
+}
+#country, #city {
+    margin: 25px 25px;
+    padding: 5px;
+    font-size: 25px;
+    width: 200px;
+}

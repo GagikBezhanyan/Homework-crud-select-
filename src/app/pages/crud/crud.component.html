@@ -1,0 +1,95 @@
+<app-header></app-header>
+
+<div class="block">
+    <div class="add">
+        <button type="button" class="btn btn-primary" (click)="openModal(template)" (click)="addUser()">Add</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Adress</th>
+                <th>Gender</th>
+                <th>Country</th>
+                <th>City</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of arr; let i = index">
+                <td>{{item.name}}</td>
+                <td>{{item.last_name}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.adress}}</td>
+                <td>{{item.gender}}</td>
+                <td>{{item.country}}</td>
+                <td>{{item.city}}</td>
+                <td>
+                    <button type="button" class="btn btn-success" (click)="openModal(template)" (click)="editUser(i)">Edit</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" (click)="deleteUser(item.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ng-template #template>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Edit User Info</h4>
+            <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="form">
+                <label for="f-name">Name:</label>
+                <div>
+                    <input [formControlName]="'first_name'" type="text" id="f-name">
+                </div>
+                <label for="l-name">Last Name:</label>
+                <div>
+                    <input [formControlName]="'last_name'" type="text" id="l-name">
+                </div>
+                <label for="email">Email:</label>
+                <div>
+                    <input [formControlName]="'email'" type="email" id="email">
+                </div>
+                <label for="age">Age:</label>
+                <div>
+                    <input [formControlName]="'age'" type="number" id="age">
+                </div>
+                <label for="adress">Adress:</label>
+                <div>
+                    <input [formControlName]="'adress'" type="text" id="adress">
+                </div>
+                <p>Gender:</p>
+                <div>
+                    <input [formControlName]="'gender'" type="radio" id="male" value="male" name="gender">
+                    <label for="male">-Male</label>
+                    <br>
+                    <input [formControlName]="'gender'" type="radio" id="female" value="female" name="gender">
+                    <label for="female">-Female</label>
+                </div>
+                <label for="country">Country:</label>
+                <div>
+                    <input [formControlName]="'country'" type="text" id="country">
+                </div>
+                <label for="city">City:</label>
+                <div>
+                    <input [formControlName]="'city'" type="text" id="city">
+                </div>
+                <div>
+                   <button (click)="sendChanges()" id="send" type="button">Send changes</button> 
+                </div>
+            </form>
+        </div>
+    </ng-template>
+
+</div>
+
+<app-footer></app-footer>

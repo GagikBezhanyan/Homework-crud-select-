@@ -1,0 +1,71 @@
+<app-header></app-header>
+
+<div id="block">
+    <div id="tableBlock">
+        <table>
+            <thead>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Age</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of userList; let i = index">
+                    <td>{{item.first_name}}</td>
+                    <td>{{item.last_name}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.phone}}</td>
+                    <td>{{item.age}}</td>
+                    <td>
+                        <span (click)="editUser(i)">Edit</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="formBlock">
+        <form [formGroup]="form" (ngSubmit)="save()">
+            <label for="f-name">First Name</label>
+            <div>
+                <input formControlName="first_name" type="text" id="f-name">
+                <div class="error-message" *ngIf="form.get('first_name').hasError('required') && (form.get('first_name').touched || form.get('first_name').dirty)">This field is required</div>
+                <div class="error-message" *ngIf="form.get('first_name').hasError('minlength') && (form.get('first_name').touched || form.get('first_name').dirty)">This field must be minimum 3 symbol</div>
+                <div class="error-message" *ngIf="form.get('first_name').hasError('maxlength') && (form.get('first_name').touched || form.get('first_name').dirty)">This field must be maximum 8 symbol</div>
+                <div class="error-message" *ngIf="form.get('first_name').hasError('pattern') && (form.get('first_name').touched || form.get('first_name').dirty)">You must write only letters</div>
+            </div>
+            <label for="l-name">Last Name</label>
+            <div>
+                <input formControlName="last_name" type="text" id="l-name">
+                <div class="error-message" *ngIf="form.get('last_name').hasError('required') && (form.get('last_name').touched || form.get('last_name').dirty)">This field is required</div>
+                <div class="error-message" *ngIf="form.get('last_name').hasError('pattern') && (form.get('last_name').touched || form.get('last_name').dirty)">You must write only letters</div>
+            </div>
+            <label for="email">Email</label>
+            <div>
+                <input formControlName="email" type="email" id="email">
+                <div class="error-message" *ngIf="form.get('email').hasError('required') && (form.get('email').touched || form.get('email').dirty)">This field is required</div>
+                <div class="error-message" *ngIf="form.get('email').hasError('pattern') && (form.get('email').touched || form.get('email').dirty)">Your email form is incorrect</div>
+            </div>
+            <label for="phone">Phone</label>
+            <div>
+                <input formControlName="phone" type="text" id="phone">
+                <div class="error-message" *ngIf="form.get('phone').hasError('required') && (form.get('phone').touched || form.get('phone').dirty)">This field is required</div>
+                <div class="error-message" *ngIf="form.get('phone').hasError('pattern') && (form.get('phone').touched || form.get('phone').dirty)">Your email form is incorrect</div>
+            </div>
+            <label for="age">Age</label>
+            <div>
+                <input formControlName="age" type="number" id="age">
+                <div class="error-message" *ngIf="form.get('age').hasError('required') && (form.get('age').touched || form.get('age').dirty)">This field is required</div>
+                <div class="error-message" *ngIf="form.get('age').hasError('min') && (form.get('age').touched || form.get('age').dirty)">Age must be high 18y.o.</div>
+                <div class="error-message" *ngIf="form.get('age').hasError('min') && (form.get('age').touched || form.get('age').dirty)">Age must be less than 64y.o.</div>
+            </div>
+        </form>
+        <button (click)="setVal()">Set Changes</button>
+        <button (click)="reset()">Reset</button>
+    </div>
+</div>
+
+<app-footer></app-footer>
+
