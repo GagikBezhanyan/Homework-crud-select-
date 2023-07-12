@@ -3,22 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HomeComponent } from './pages/home/home.component';
 import { Route, RouterModule } from '@angular/router';
-import { AboutComponent } from './pages/about/about.component';
 import { Page404Component } from './pages/page404/page404.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ListComponent } from './pages/list/list.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { HttpClientModule } from '@angular/common/http';
-import { CrudComponent } from './pages/crud/crud.component';
-import { SelectCountryComponent } from './pages/select-country/select-country.component';
-import { LayoutComponent } from './pages/layout/layout.component';
 import { PostComponent } from './pages/post/post.component';
 import { CategoryComponent } from './pages/category/category.component';
-import { HomeModule } from './pages/home/home.module';
+import { ParentComponent } from './pages/parent/parent.component';
+import { ChildComponent } from './pages/child/child.component';
+import { TrimPipe } from './pipes/trim.pipe';
+import { ClickDirective } from './directives/click.directive';
+import { LoginComponent } from './components/login/login.component';
+import { OtherComponent } from './components/other/other.component';
+import { LoginGuardService } from './service/login.guard.service';
 
 const router: Route[] = [
   {
@@ -34,6 +32,15 @@ const router: Route[] = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'parent',
+    component: ParentComponent
+  },
+  { path: 'login', 
+    component: LoginComponent, 
+    canActivate: [LoginGuardService]
+  },
+  
   // {
   //   path: 'admin',
   //   component: LayoutComponent,
@@ -83,7 +90,13 @@ const router: Route[] = [
     AppComponent,
     Page404Component,
     PostComponent,
-    CategoryComponent
+    CategoryComponent,
+    ParentComponent,
+    ChildComponent,
+    TrimPipe,
+    ClickDirective,
+    LoginComponent,
+    OtherComponent
   ],
   exports: [],
   imports: [

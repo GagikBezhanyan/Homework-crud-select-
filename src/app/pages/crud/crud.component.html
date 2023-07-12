@@ -29,7 +29,7 @@
                 <td>{{item.country}}</td>
                 <td>{{item.city}}</td>
                 <td>
-                    <button type="button" class="btn btn-success" (click)="openModal(template)" (click)="editUser(i)">Edit</button>
+                    <button type="button" class="btn btn-success" (click)="openModal(template)" (click)="editUser(item.id)">Edit</button>
                 </td>
                 <td>
                     <button type="button" class="btn btn-danger" (click)="deleteUser(item.id)">Delete</button>
@@ -47,26 +47,43 @@
         </div>
         <div class="modal-body">
             <form [formGroup]="form">
+
                 <label for="f-name">Name:</label>
                 <div>
                     <input [formControlName]="'first_name'" type="text" id="f-name">
+                    <div class="error-message" *ngIf="form.get('first_name').hasError('required') && (form.get('first_name').touched || form.get('first_name').dirty)">This field is required</div>
+                    <div class="error-message" *ngIf="form.get('first_name').hasError('pattern') && (form.get('first_name').touched || form.get('first_name').dirty)">You must write only letters</div>
                 </div>
+
                 <label for="l-name">Last Name:</label>
                 <div>
                     <input [formControlName]="'last_name'" type="text" id="l-name">
+                    <div class="error-message" *ngIf="form.get('last_name').hasError('required') && (form.get('last_name').touched || form.get('last_name').dirty)">This field is required</div>
+                    <div class="error-message" *ngIf="form.get('last_name').hasError('pattern') && (form.get('last_name').touched || form.get('last_name').dirty)">You must write only letters</div>
                 </div>
+
                 <label for="email">Email:</label>
                 <div>
                     <input [formControlName]="'email'" type="email" id="email">
+                    <div class="error-message" *ngIf="form.get('email').hasError('required') && (form.get('email').touched || form.get('email').dirty)">This field is required</div>
+                    <div class="error-message" *ngIf="form.get('email').hasError('pattern') && (form.get('email').touched || form.get('email').dirty)">Your email form is incorrect</div>
                 </div>
+
                 <label for="age">Age:</label>
                 <div>
                     <input [formControlName]="'age'" type="number" id="age">
+                    <div class="error-message" *ngIf="form.get('age').hasError('required') && (form.get('age').touched || form.get('age').dirty)">This field is required</div>
+                    <div class="error-message" *ngIf="form.get('age').hasError('min') && (form.get('age').touched || form.get('age').dirty)">Age must be high 18y.o.</div>
+                    <div class="error-message" *ngIf="form.get('age').hasError('max') && (form.get('age').touched || form.get('age').dirty)">Age must be less than 64y.o.</div>
                 </div>
+
                 <label for="adress">Adress:</label>
                 <div>
                     <input [formControlName]="'adress'" type="text" id="adress">
+                    <div class="error-message" *ngIf="form.get('adress').hasError('required') && (form.get('adress').touched || form.get('adress').dirty)">This field is required</div>
+                    <div class="error-message" *ngIf="form.get('adress').hasError('pattern') && (form.get('adress').touched || form.get('adress').dirty)">Your adress form is incorrect</div>
                 </div>
+
                 <p>Gender:</p>
                 <div>
                     <input [formControlName]="'gender'" type="radio" id="male" value="male" name="gender">
@@ -75,14 +92,21 @@
                     <input [formControlName]="'gender'" type="radio" id="female" value="female" name="gender">
                     <label for="female">-Female</label>
                 </div>
+
                 <label for="country">Country:</label>
                 <div>
                     <input [formControlName]="'country'" type="text" id="country">
+                    <div class="error-message" *ngIf="form.get('country').hasError('required') && (form.get('country').touched || form.get('country').dirty)">This field is required</div>
+                    <div class="error-message" *ngIf="form.get('country').hasError('pattern') && (form.get('country').touched || form.get('country').dirty)">Your country form is incorrect</div>
                 </div>
+
                 <label for="city">City:</label>
                 <div>
                     <input [formControlName]="'city'" type="text" id="city">
+                    <div class="error-message" *ngIf="form.get('city').hasError('required') && (form.get('city').touched || form.get('city').dirty)">This field is required</div>
+                    <div class="error-message" *ngIf="form.get('city').hasError('pattern') && (form.get('city').touched || form.get('city').dirty)">Your city form is incorrect</div>
                 </div>
+
                 <div>
                    <button (click)="sendChanges()" id="send" type="button">Send changes</button> 
                 </div>

@@ -4,7 +4,7 @@
     <form [formGroup]="form">
       <div id="country_block">
         <select id="country" [formControlName]="'val'" (change)="changeCountry()">
-          <option selected hidden>Select Country</option>
+          <option value="" selected hidden>Select Country</option>
           <option *ngFor="let item of myData; let i = index" [value]="i + 1">{{item.name}}</option>
         </select>
       </div>

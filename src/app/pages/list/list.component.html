@@ -59,7 +59,7 @@
                 <input formControlName="age" type="number" id="age">
                 <div class="error-message" *ngIf="form.get('age').hasError('required') && (form.get('age').touched || form.get('age').dirty)">This field is required</div>
                 <div class="error-message" *ngIf="form.get('age').hasError('min') && (form.get('age').touched || form.get('age').dirty)">Age must be high 18y.o.</div>
-                <div class="error-message" *ngIf="form.get('age').hasError('min') && (form.get('age').touched || form.get('age').dirty)">Age must be less than 64y.o.</div>
+                <div class="error-message" *ngIf="form.get('age').hasError('max') && (form.get('age').touched || form.get('age').dirty)">Age must be less than 64y.o.</div>
             </div>
         </form>
         <button (click)="setVal()">Set Changes</button>

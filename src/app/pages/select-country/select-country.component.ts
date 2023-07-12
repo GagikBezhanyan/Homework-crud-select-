@@ -21,7 +21,7 @@ export class SelectCountryComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      val:'',
+      val: '',
     })
     
     this.request.getData(this.myUrl).subscribe((data) => {

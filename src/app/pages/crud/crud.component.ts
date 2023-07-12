@@ -12,7 +12,7 @@ import { MyUser } from 'src/app/models/user';
 })
 export class CrudComponent implements OnInit {
   public crudUrl: string = environment.home.get;
-  public arr: any;
+  public arr: MyUser[]=[];
   public each_user: any;
   public form: any;
   public userIndex!: number;
@@ -28,27 +28,32 @@ export class CrudComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.crudRequest.getData(this.crudUrl).subscribe((data) => {
-      this.arr = data;      
-      console.log(this.arr);
-    })
-
+    this.getData();
     this.form = this.fb.group({
       first_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z]{1,}$/)])],
       last_name: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z]{1,}$/)])],
       email: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9_\-\.\$]+@[a-zA-Z]+\.[a-zA-Z]{2,3}$/)])],
       age: ['', Validators.compose([Validators.required, Validators.min(18), Validators.max(64)])],
-      adress: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9\-\/\.]{1,}$/)])],
+      adress: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9\-\/\.\ ]{1,}$/)])],
       gender: ['', Validators.required],
-      country: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z\-]{1,}$/)])],
-      city: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z\-]{1,}$/)])]
+      country: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z\-\ ]{1,}$/)])],
+      city: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z\-\ ]{1,}$/)])]
+    })
+    console.log(this.form);
+    
+  }
+
+  getData () {
+    this.crudRequest.getData(this.crudUrl).subscribe((data: any) => {
+      this.arr = data;      
+      // console.log(this.arr); 
     })
   }
 
   editUser(index: number): void {
     this.checkButton = true;
-
-    this.userIndex = index + 1;
+    this.userIndex = index;
+    
     this.crudRequest.getData(`${this.crudUrl}/${this.userIndex}`).subscribe((res) => {
       this.each_user = res;
       console.log(this.each_user);
@@ -69,11 +74,8 @@ export class CrudComponent implements OnInit {
   deleteUser(index: number): void {
     this.crudRequest.deleteData(`${this.crudUrl}/${index}`).subscribe((res) => {
       // console.log(res);
-      this.crudRequest.getData(this.crudUrl).subscribe((data) => {
-        this.arr = data;
-      });
-    })
-    
+      this.getData();
+    }) 
   };
 
   addUser(): void {
@@ -82,33 +84,18 @@ export class CrudComponent implements OnInit {
   }
 
   sendChanges(): void {
-    let value = {
-      "name": `${this.form.value.first_name}`,
-      "last_name": `${this.form.value.last_name}`,
-      "email": `${this.form.value.email}`,
-      "age": `${this.form.value.age}`,
-      "adress": `${this.form.value.adress}`,
-      "gender": `${this.form.value.gender}`,
-      "country": `${this.form.value.country}`,
-      "city": `${this.form.value.city}`
-    }  
-
+    let value = this.form.value; 
     if (this.checkButton) {
       this.crudRequest.putData(`${this.crudUrl}/${this.userIndex}`, value).subscribe((res) => {
         // console.log(res);
-        this.crudRequest.getData(this.crudUrl).subscribe((data) => {
-          this.arr = data;
-        });
+        this.getData();
       })
     } else {
       this.crudRequest.postData(this.crudUrl, value).subscribe((res) => {
         // console.log(res);
-        this.crudRequest.getData(this.crudUrl).subscribe((data) => {
-          this.arr = data;
-        });
+        this.getData();
       })
     }
-   
   }
 
 }
