@@ -5,7 +5,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppComponent } from './app.component';
 import { Route, RouterModule } from '@angular/router';
 import { Page404Component } from './pages/page404/page404.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './pages/post/post.component';
@@ -17,6 +16,7 @@ import { ClickDirective } from './directives/click.directive';
 import { LoginComponent } from './components/login/login.component';
 import { OtherComponent } from './components/other/other.component';
 import { LoginGuardService } from './service/login.guard.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const router: Route[] = [
   {
